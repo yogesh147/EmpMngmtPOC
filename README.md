@@ -1,3 +1,3 @@
 # EmpMngmtPOC
 
-Project for sprinboot + mysql + spring JPA 
+Project of Spring Boot + MYSQL + Spring JPA 
