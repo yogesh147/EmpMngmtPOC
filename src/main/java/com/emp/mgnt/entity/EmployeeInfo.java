@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -39,4 +40,8 @@ public class EmployeeInfo {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "dep_id", referencedColumnName = "id")
 	private EmployeeDepartment department;
+	
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    private EmployeeRole role;
 }
