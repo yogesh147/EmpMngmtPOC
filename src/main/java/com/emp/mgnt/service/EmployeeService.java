@@ -71,9 +71,9 @@ public class EmployeeService {
 			employeeDb.setName(employee.getName());
 		}
 
-		if (Objects.nonNull(employee.getDepartmentName()) && !"".equalsIgnoreCase(employee.getDepartmentName())) {
-			employeeDb.setDepartmentName(employee.getDepartmentName());
-		}
+//		if (Objects.nonNull(employee.getDepartmentName()) && !"".equalsIgnoreCase(employee.getDepartmentName())) {
+//			employeeDb.setDepartmentName(employee.getDepartmentName());
+//		}
 
 		if (Objects.nonNull(employee.getTasks()) && !employee.getTasks().isEmpty() && employee.getTasks().size() > 0) {
 			List<Task> dbTask = employeeDb.getTasks();

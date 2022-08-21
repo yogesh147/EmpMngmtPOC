@@ -14,13 +14,8 @@ import lombok.Data;
 public class EmployeeDepartment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private Long id;
 
 	private String name;
-	
-//	@OneToMany(mappedBy = "department")
-//    private List<EmployeeInfo> employees;
-
-	private String employeeName;
 
 }
