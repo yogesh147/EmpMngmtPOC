@@ -95,11 +95,21 @@ public class EmployeeResource {
 		return new ResponseEntity(empService.fetchEmployeeListByDepartmentName(name), HttpStatus.OK);
 	}
 
+	/**
+	 * get Join Information employee By Department Name
+	 * 
+	 * @return ResponseEntity of employee list with http status
+	 */
 	@GetMapping("/getInfo")
 	public List<EmployeeResponseDTO> getJoinInformation() {
 		return empService.getJoinInformation();
 	}
 	
+	/**
+	 * delete Task by Id
+	 * 
+	 * @return ResponseEntity of employee list with http status
+	 */
 	@DeleteMapping("/task/{id}")
 	public ResponseEntity<?> deleteTask(@PathVariable("id") Long id) {
 		empService.deleteTask(id);
