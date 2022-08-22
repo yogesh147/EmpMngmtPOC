@@ -19,7 +19,7 @@ public class EmployeeRole {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long role_id;
-
+		
 	private String name;
-	
+
 }
