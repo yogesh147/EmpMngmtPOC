@@ -2,7 +2,18 @@ package com.emp.mgnt;
 
 import java.util.Optional;
 
-public class Design {
+
+
+abstract class Employee {
+	Employee(){
+	}
+}
+
+abstract class Employee1 {
+}
+
+public class Design extends Employee {
+	
 
 	public static void main(String[] args) {
 
