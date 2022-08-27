@@ -11,3 +11,4 @@ SPRING_DOCKER_PORT=8080
 BUILD_TIME_STAMP= $(date +'%d.%m.%Y.%H.%M.%S ')
 EOF
 docker-compose up -d
+$SHELL
