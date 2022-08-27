@@ -2,6 +2,7 @@ version: "3"
 services:
   poc:
     image: poc
+    restart: unless-stopped
     ports:
       - "8080:8080"
     networks:
@@ -11,6 +12,7 @@ services:
  
   mysqldb:
     image: mysql:8
+    restart: unless-stopped
     networks:
       - poc
     environment:
