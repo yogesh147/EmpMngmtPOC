@@ -9,7 +9,7 @@ abstract class Employee {
 
 abstract class Employee1 {
 }
-
+ 
 public class Design extends Employee {
 
 	public static void main(String[] args) {
