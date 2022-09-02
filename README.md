@@ -79,3 +79,14 @@ networks:
 
 // Docker compose yml changes and docker commands end
 
+// configuration
+Hibernate - 5.3.7.Final
+Eclipse IDE - 2020-09 (v14.17)
+Maven - 3.63
+JavaSE - 1.8
+MySQL - 8.0.30
+SpringBoot - v2.6.10
+Hibernate configuration - 3.0.dtd
+Eg - https://github.com/RameshMF
+
+

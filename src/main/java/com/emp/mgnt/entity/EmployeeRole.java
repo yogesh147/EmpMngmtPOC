@@ -12,14 +12,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "Role")
 public class EmployeeRole {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long role_id;
 		
 	private String name;

@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 import com.emp.mgnt.entity.EmployeeInfo;
 import com.emp.mgnt.entity.EmployeeResponseDTO;
 
-@Repository
-public interface EmployeeRepository extends JpaRepository<EmployeeInfo, Long> {
-
+//@Repository
+public interface EmployeeRepository  {
+/**
 	List<EmployeeInfo> findByDepartmentName(String DepartmentName);
 
 	@Query("SELECT new com.emp.mgnt.entity.EmployeeResponseDTO(c.name , p.taskName) FROM EmployeeInfo c JOIN c.tasks p")
@@ -21,5 +21,5 @@ public interface EmployeeRepository extends JpaRepository<EmployeeInfo, Long> {
 
 	@Query(value = "SELECT * FROM employee_info", nativeQuery = true)
 	public Page<EmployeeInfo> findAllSortedByNameUsingNative( Pageable pageable);
-
+*/
 }

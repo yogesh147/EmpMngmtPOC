@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.emp.mgnt.entity.Task;
 
-@Repository
-public interface TaskRepository extends JpaRepository<Task, Long> {
+//@Repository
+public interface TaskRepository {
 
 }

@@ -1,57 +1,32 @@
 package com.emp.mgnt.entity;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "EmployeeInfo")
-@Builder
-@ToString
-public class EmployeeInfo {
+@Getter
+@Setter
+@Table(name="employee_info")
+public class EmployeeInfo implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(unique=true)
-	private String name;
-
-	@OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "emp_id", referencedColumnName = "id")
-	private List<Task> tasks;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "dep_id", referencedColumnName = "id")
-	private EmployeeDepartment department;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "role_id", referencedColumnName = "role_id")
-	private EmployeeRole role;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private Set<User> users = new HashSet<>();
 
 }

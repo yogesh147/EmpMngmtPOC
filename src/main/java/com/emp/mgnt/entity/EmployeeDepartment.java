@@ -8,12 +8,10 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Entity
 @Data
-@Table(name = "Department")
 public class EmployeeDepartment {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	private String name;

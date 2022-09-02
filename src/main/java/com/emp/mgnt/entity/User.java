@@ -20,23 +20,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-@Table(name = "user")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	private String name;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "employee_info_id", referencedColumnName = "user_id")
-	private Set<EmployeeInfo> employees = new HashSet<>();
+//
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "employee_info_id", referencedColumnName = "user_id")
+//	private Set<EmployeeInfo> employees = new HashSet<>();
 
 }

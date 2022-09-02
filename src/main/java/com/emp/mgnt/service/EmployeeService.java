@@ -1,9 +1,6 @@
 package com.emp.mgnt.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,7 +13,6 @@ import org.springframework.util.StringUtils;
 import com.emp.mgnt.custom.exception.InvalidDepartmentException;
 import com.emp.mgnt.entity.EmployeeInfo;
 import com.emp.mgnt.entity.EmployeeResponseDTO;
-import com.emp.mgnt.entity.Task;
 import com.emp.mgnt.respository.EmployeeRepository;
 import com.emp.mgnt.respository.TaskRepository;
 
@@ -26,11 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EmployeeService {
 
-	@Autowired
-	private EmployeeRepository empRepository;
-
-	@Autowired
-	private TaskRepository taskRepository;
+//	@Autowired
+//	private EmployeeRepository empRepository;
+//
+//	@Autowired
+//	private TaskRepository taskRepository;
 
 	/**
 	 * save Employee
@@ -46,10 +42,10 @@ public class EmployeeService {
 		 * Optional<Employee> emp = Optional.ofNullable(employee); if(emp.isPresent()) {
 		 * } emp.ifPresent(e -> System.out.println(e.getEmpDepartment()));
 		 */
-		if (!StringUtils.hasText(employee.getName())) {
-			throw new InvalidDepartmentException("Employee name not found");
-		}
-		return empRepository.save(employee);
+//		if (!StringUtils.hasText(employee.getName())) {
+//			throw new InvalidDepartmentException("Employee name not found");
+//		}
+		return null;
 	}
 
 	/**
@@ -58,7 +54,7 @@ public class EmployeeService {
 	 * @return employees
 	 */
 	public List<EmployeeInfo> fetchEmployeeList() {
-		return (List<EmployeeInfo>) empRepository.findAll();
+		return null;
 	}
 
 	/**
@@ -68,7 +64,7 @@ public class EmployeeService {
 	 * @param empId
 	 * @return updated Employee object
 	 */
-	public EmployeeInfo updateEmployee(EmployeeInfo employee) {
+	/**public EmployeeInfo updateEmployee(EmployeeInfo employee) {
 		EmployeeInfo employeeDb = empRepository.findById(employee.getId()).get();
 
 		if (Objects.nonNull(employee.getName()) && !"".equalsIgnoreCase(employee.getName())) {
@@ -95,7 +91,7 @@ public class EmployeeService {
 			});
 		}
 		return empRepository.save(employeeDb);
-	}
+	}*/
 
 	/**
 	 * delete Employee By Id
@@ -103,7 +99,7 @@ public class EmployeeService {
 	 * @param EmployeeId
 	 */
 	public void deleteEmployeeById(Long EmployeeId) {
-		empRepository.deleteById(EmployeeId);
+//		empRepository.deleteById(EmployeeId);
 	}
 
 	/**
@@ -113,19 +109,19 @@ public class EmployeeService {
 	 * @return employees
 	 */
 	public List<EmployeeInfo> fetchEmployeeListByDepartmentName(String name) {
-		return empRepository.findByDepartmentName(name);
+		return null;
 	}
 
 	public List<EmployeeResponseDTO> getJoinInformation() {
-		return empRepository.getJoinInformation();
+		return null;
 	}
 
 	public void deleteTask(Long id) {
-		taskRepository.deleteById(id);
+//		taskRepository.deleteById(id);
 	}
 
 	public Page<EmployeeInfo> getAllEmployeeSortedByNameUsingNative() {
 		 Pageable pageable = PageRequest.of(0, 10, Sort.by("name").descending());
-		return empRepository.findAllSortedByNameUsingNative(pageable);
+		return null;
 	}
 }
