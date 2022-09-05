@@ -1,8 +1,17 @@
 package com.emp.mgnt.util;
 
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,6 +20,12 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
+import org.springframework.beans.ConfigurablePropertyAccessor;
+import org.springframework.beans.PropertyAccessorFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import com.emp.mgnt.entity.EmployeeInfo;
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -19,11 +34,15 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
+@Transactional
+@EnableTransactionManagement
+@Configuration
 public class HibernateUtil {
 	private static StandardServiceRegistry registry;
 	private static SessionFactory sessionFactory;
 	private static Session sessionObj;
 	
+	@Bean
 	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			try {
@@ -44,6 +63,7 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 
+	@Bean
 	public static void shutdown() {
 		if (registry != null) {
 			StandardServiceRegistryBuilder.destroy(registry);
@@ -61,6 +81,31 @@ public class HibernateUtil {
 
 			// Creating Transaction Entities
 			EmployeeInfo emp = new EmployeeInfo();
+			
+//			Field id = emp.getClass().getDeclaredField("id");
+//			id.setAccessible(true);
+//			int data = 11;
+//			id.setInt(emp, data);
+//			emp.setName("ss");
+			emp.setId(1);
+//			Method setter = EmployeeInfo.class.getDeclaredMethod("setId", String.class);
+//			setter.invoke(emp, "11");
+
+//			System.out.println("before: " + emp);
+//			ConfigurablePropertyAccessor propertyAccessor = PropertyAccessorFactory.forBeanPropertyAccess(emp);
+//			propertyAccessor.setPropertyValue("id", "Tina");
+//			System.out.println("after: " + emp);
+//			
+			
+			//
+			
+//			System.out.println("before: " + p);
+//			Method setter = EmployeeInfo.class.getDeclaredMethod("setId", String.class);
+//			setter.invoke(p, "Tina");
+
+//			Method getter = EmployeeInfo.class.getDeclaredMethod("getId", String.class);
+//			getter.invoke(p, "Tina");
+			
 			sessionObj.save(emp);
 			// Committing The Transactions To The Database
 			t.commit();

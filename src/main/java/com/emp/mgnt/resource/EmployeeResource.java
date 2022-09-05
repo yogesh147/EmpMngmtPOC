@@ -21,6 +21,7 @@ import com.emp.mgnt.custom.exception.InvalidDepartmentException;
 import com.emp.mgnt.entity.EmployeeInfo;
 import com.emp.mgnt.entity.EmployeeResponseDTO;
 import com.emp.mgnt.service.EmployeeService;
+import com.emp.mgnt.util.HibernateUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,6 +48,7 @@ public class EmployeeResource {
 	@PostMapping
 	public ResponseEntity<?> saveEmployee(@Valid @RequestBody EmployeeInfo employee) throws InvalidDepartmentException {
 //		log.info("Inside saveEmployee :: {}", employee.getName());
+		HibernateUtil.createRecord();
 		return new ResponseEntity(empService.saveEmployee(employee), HttpStatus.OK);
 	}
 
