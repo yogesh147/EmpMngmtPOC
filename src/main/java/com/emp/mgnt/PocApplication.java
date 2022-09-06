@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.emp.mgnt.util.HibernateUtil;
 
@@ -42,7 +43,6 @@ public class PocApplication{
 		log.info("________________________________");
 		log.info("Employee Management POC APP Start");
 		log.info("________________________________");
-//		runHibernateCode();
 	}
 
 	private static void runHibernateCode() {
@@ -65,6 +65,7 @@ public class PocApplication{
 	
 	@PostConstruct
 	public void initApplication() {
+		runHibernateCode();
 		if (env.getActiveProfiles().length == 0) {
 			log.warn("No Spring profile configured, running with default configuration");
 		} else {

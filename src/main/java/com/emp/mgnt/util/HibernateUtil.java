@@ -1,14 +1,7 @@
 package com.emp.mgnt.util;
 
-import java.beans.BeanInfo;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -20,16 +13,17 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
-import org.springframework.beans.ConfigurablePropertyAccessor;
-import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.emp.mgnt.entity.EmployeeInfo;
+
 import lombok.extern.slf4j.Slf4j;
+
 /**
  * Java based configuration
+ * 
  * @author yogesh choudhary
  *
  */
@@ -41,8 +35,7 @@ public class HibernateUtil {
 	private static StandardServiceRegistry registry;
 	private static SessionFactory sessionFactory;
 	private static Session sessionObj;
-	
-	@Bean
+
 	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			try {
@@ -63,31 +56,39 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 
-	@Bean
 	public static void shutdown() {
 		if (registry != null) {
 			StandardServiceRegistryBuilder.destroy(registry);
 		}
 	}
-	
-	// Method 1: This Method Used To Create A New EmployeeInfo Record In The Database Table
+
+	// Method 1: This Method Used To Create A New EmployeeInfo Record In The
+	// Database Table
 	public static void createRecord() {
 		int count = 0;
 		try {
 			// Getting Session Object From SessionFactory
 			sessionObj = getSessionFactory().openSession();
 			// Getting Transaction Object From Session Object
-			 Transaction t = sessionObj.beginTransaction();
+			Transaction t = sessionObj.beginTransaction();
+			EmployeeInfo emp = new EmployeeInfo();
+			emp.setId(1l);
+
+			System.out.println("sessionObj" + sessionObj);
+			System.out.println("emp" + emp);
+			sessionObj.save(emp);
+			t.commit();
+			log.info("\nSuccessfully Created '" + count + "' Records In The Database!\n");
 
 			// Creating Transaction Entities
-			EmployeeInfo emp = new EmployeeInfo();
-			
+//			EmployeeInfo emp = new EmployeeInfo();
+
 //			Field id = emp.getClass().getDeclaredField("id");
 //			id.setAccessible(true);
 //			int data = 11;
 //			id.setInt(emp, data);
 //			emp.setName("ss");
-			emp.setId(1);
+//			emp.setId(1l);
 //			Method setter = EmployeeInfo.class.getDeclaredMethod("setId", String.class);
 //			setter.invoke(emp, "11");
 
@@ -96,20 +97,18 @@ public class HibernateUtil {
 //			propertyAccessor.setPropertyValue("id", "Tina");
 //			System.out.println("after: " + emp);
 //			
-			
+
 			//
-			
+
 //			System.out.println("before: " + p);
 //			Method setter = EmployeeInfo.class.getDeclaredMethod("setId", String.class);
 //			setter.invoke(p, "Tina");
 
 //			Method getter = EmployeeInfo.class.getDeclaredMethod("getId", String.class);
 //			getter.invoke(p, "Tina");
-			
-			sessionObj.save(emp);
+
+//			sessionObj.save(emp);
 			// Committing The Transactions To The Database
-			t.commit();
-			log.info("\nSuccessfully Created '" + count + "' Records In The Database!\n");
 		} catch (Exception sqlException) {
 			if (null != sessionObj.getTransaction()) {
 				log.info("\n.......Transaction Is Being Rolled Back.......\n");
@@ -176,7 +175,8 @@ public class HibernateUtil {
 		}
 	}
 
-	// Method 4(a): This Method Is Used To Delete A Particular Record From the database Table
+	// Method 4(a): This Method Is Used To Delete A Particular Record From the
+	// database Table
 	public static void deleteRecord(long id) {
 		try {
 			// Getting Session Object From SessionFactory

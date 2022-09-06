@@ -48,7 +48,9 @@ public class EmployeeResource {
 	@PostMapping
 	public ResponseEntity<?> saveEmployee(@Valid @RequestBody EmployeeInfo employee) throws InvalidDepartmentException {
 //		log.info("Inside saveEmployee :: {}", employee.getName());
-		HibernateUtil.createRecord();
+		log.info("\n=======CREATE RECORDS=======\n");
+//		new HibernateUtil().createRecord();
+		log.info("\n=======READ RECORDS=======\n");
 		return new ResponseEntity(empService.saveEmployee(employee), HttpStatus.OK);
 	}
 
@@ -72,7 +74,7 @@ public class EmployeeResource {
 	 */
 	@PutMapping
 	public ResponseEntity<?> updateEmployee(@RequestBody EmployeeInfo employee) {
-		log.info("Inside updateEmployee by id :: {}", employee.getId());
+		log.info("Inside updateEmployee by id :: {}", employee);
 		return new ResponseEntity(null, HttpStatus.OK);
 	}
 
